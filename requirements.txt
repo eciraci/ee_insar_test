@@ -6,3 +6,6 @@ xarray
 pandas
 geopandas
 rasterio
+fiona
+pyproj
+affine

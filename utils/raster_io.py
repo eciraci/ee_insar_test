@@ -24,16 +24,19 @@ import numpy as np
 from typing import Union
 
 
-def load_dem_tiff(in_path: str) -> dict:
-    # - Load TanDEM-X DEM raster saved in GeoTiff format.
+def load_raster(in_path: str) -> dict:
+    """
+    # - Load raster saved in GeoTiff format
+    :param in_path: absolute path to input file
+    :return: dictionary containing the input raster + ancillary info.
+    """
     with rasterio.open(in_path, mode='r+') as src:
-        # - read band #1 - DEM elevation in meters
-        dem_input = src.read(1).astype(src.dtypes[0])
+        # - read band #1
+        raster_input = src.read(1).astype(src.dtypes[0])
         # - raster upper-left and lower-right corners
         ul_corner = src.transform * (0, 0)
         lr_corner = src.transform * (src.width, src.height)
         grid_res = src.res
-
         # - compute x- and y-axis coordinates
         x_coords = np.arange(ul_corner[0], lr_corner[0], grid_res[0])
         y_coords = np.arange(lr_corner[1], ul_corner[1], grid_res[1])
@@ -46,12 +49,12 @@ def load_dem_tiff(in_path: str) -> dict:
         # - the lower-left corner of the raster is considered
         # - the origin of the reference system.
         if src.transform.e < 0:
-            dem_input = np.flipud(dem_input)
+            raster_input = np.flipud(raster_input)
         # - Compute New Affine Transform
         transform = (Affine.translation(x_coords[0], y_coords[0])
                      * Affine.scale(src.res[0], src.res[1]))
 
-        return{'data': dem_input, 'crs': src.crs, 'res': src.res,
+        return{'data': raster_input, 'crs': src.crs, 'res': src.res,
                'y_coords': y_coords, 'x_coords': x_coords,
                'y_centroids': y_centroids, 'x_centroids': x_centroids,
                'transform': transform, 'src_transform': src.transform,
