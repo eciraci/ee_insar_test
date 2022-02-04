@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 u"""
 read_ee_phase.py
-Written by Enrico Ciraci' (08/2021)
+Written by Enrico Ciraci' (02/2022)
 
 Compute the complex difference between two coregistered interferograms.
 
@@ -11,8 +11,8 @@ usage: read_ee_phase.py [-h] [--directory DIRECTORY]
 TEST: Compute Ice shelf basal melt rate - Eulerian.
 
 positional arguments:
-  reference             Reference Interferogram.
-  secondary             Secondary Interferogram.
+  reference    Reference Interferogram.
+  secondary    Secondary Interferogram.
 
 optional arguments:
   -h, --help            show this help message and exit

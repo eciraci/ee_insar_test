@@ -1,1 +1,0 @@
-# Compute the complex difference between two coregistered interferograms.
