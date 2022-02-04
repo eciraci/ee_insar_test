@@ -140,7 +140,7 @@ def virtual_warp_rio(src_file: str, out_file: str, res: int = 250,
     """
     # - Define output grid - with regular step equal to the
     # - selected resolution
-    dem_src = load_dem_tiff(src_file)
+    dem_src = load_raster(src_file)
     # - raster upper - left and lower - right corners
     ul_corner_1 = dem_src['ul_corner']
     lr_corner_1 = dem_src['lr_corner']
