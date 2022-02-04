@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 u"""
 read_ee_phase.py
-Written by Enrico Ciraci' (08/2021)
+Written by Enrico Ciraci' (02/2022)
 
 Compute the complex difference between two coregistered interferograms.
 
