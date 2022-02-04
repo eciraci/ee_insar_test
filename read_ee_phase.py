@@ -11,8 +11,8 @@ usage: read_ee_phase.py [-h] [--directory DIRECTORY]
 TEST: Compute Ice shelf basal melt rate - Eulerian.
 
 positional arguments:
-  reference             Reference Interferogram.
-  secondary             Secondary Interferogram.
+  reference    Reference Interferogram.
+  secondary    Secondary Interferogram.
 
 optional arguments:
   -h, --help            show this help message and exit
