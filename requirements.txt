@@ -9,3 +9,4 @@ rasterio
 fiona
 pyproj
 affine
+matplotlib

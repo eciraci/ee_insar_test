@@ -1,41 +1,36 @@
 #!/usr/bin/env python
 u"""
-reproject_dem_rasterio.py
+read_ee_phase.py
 Written by Enrico Ciraci' (08/2021)
 
-Reproject TanDEM-X DEMs from their native projection [EPSG:4326] to the selected
-new coordinate reference system.
-Use GDAL (Geospatial Data Abstraction Library) Python bindings provided by the
-Rasterio project to apply the reprojection/interpolation.
-Rasterio provides more Pythonic ways to access GDAL API if compared to the
-standard GDAL Python Binding.
-(https://rasterio.readthedocs.io)
+Compute the complex difference between two coregistered interferograms.
 
-COMMAND LINE OPTIONS:
-    --directory X, -D X: Project data directory.
-    --outdir X, -O X: Output Directory.
-    --crs X, -C X: Destination Coordinate Reference System - def.EPSG:3413
-    --res X, -R X: Output raster Resolution. - def. 50 meters.
-    --resampling_alg X: Warp Resampling Algorithm. - def. bilinear
+usage: read_ee_phase.py [-h] [--directory DIRECTORY]
+       [--outdir OUTDIR] reference secondary
 
-The complete list of the available warp resampling algorithms can be found here:
-https://rasterio.readthedocs.io/en/
-      latest/api/rasterio.enums.html#rasterio.enums.Resampling
+TEST: Compute Ice shelf basal melt rate - Eulerian.
 
-Note: This preliminary version of the script has been developed to process
-      TanDEM-X data available between 2011 and 2020 for the area surrounding
-      Petermann Glacier (Northwest Greenland).
+positional arguments:
+  reference             Reference Interferogram.
+  secondary             Secondary Interferogram.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --directory DIRECTORY, -D DIRECTORY
+                        Project data directory.
+  --outdir OUTDIR, -O OUTDIR
+                        Output directory.
+
 
 PYTHON DEPENDENCIES:
     argparse: Parser for command-line options, arguments and sub-commands
            https://docs.python.org/3/library/argparse.html
+    datetime: Basic date and time types
+           https://docs.python.org/3/library/datetime.html
     rasterio: access to geospatial raster data
            https://rasterio.readthedocs.io
-    geopandas: extends the datatypes used by pandas to allow spatial operations
-           on geometric types/ geospatial data.
-           https://geopandas.org
-    tqdm: A Fast, Extensible Progress Bar for Python and CLI
-           https://tqdm.github.io
+    matplotlib: Visualization with Python
+           https://matplotlib.org/
 
 UPDATE HISTORY:
 
@@ -55,10 +50,10 @@ from utils.make_dir import make_dir
 def add_colorbar(fig: plt.figure(), ax: plt.Axes,
                  im: plt.pcolormesh) -> plt.colorbar:
     """
-    Add colorbar to the selected plt.Axes.
+    Add colorbar to the selected plt.Axes
     :param fig: plt.figure object
-    :param ax: plt.Axes object.
-    :param im: plt.pcolormesh object.
+    :param ax: plt.Axes object
+    :param im: plt.pcolormesh object
     :return: plt.colorbar
     """
     divider = make_axes_locatable(ax)
