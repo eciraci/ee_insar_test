@@ -8,7 +8,7 @@ Compute the complex difference between two coregistered interferograms.
 usage: read_ee_phase.py [-h] [--directory DIRECTORY]
        [--outdir OUTDIR] reference secondary
 
-TEST: Compute Ice shelf basal melt rate - Eulerian.
+TEST: Compute the complex difference between two coregistered interferograms.
 
 positional arguments:
   reference    Reference Interferogram.
@@ -65,7 +65,8 @@ def add_colorbar(fig: plt.figure(), ax: plt.Axes,
 
 def main():
     parser = argparse.ArgumentParser(
-        description="""TEST: Compute Ice shelf basal melt rate - Eulerian."""
+        description="""TEST: Compute the complex difference between two
+        coregistered interferograms."""
     )
     # - Reference Interferogram
     parser.add_argument('reference', type=str,
